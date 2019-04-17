@@ -2194,7 +2194,7 @@ public abstract class ByteBuf implements ReferenceCounted, Comparable<ByteBuf> {
      * Also be aware that this method will NOT call {@link #retain()} and so the
      * reference count will NOT be increased.
      */
-    public abstract ByteBuf slice();
+    public abstract ByteBuf slice();//slice 出来的ByteBuf 和原来的ByteBuf 修改会互相影响
 
     /**
      * Returns a retained slice of this buffer's readable bytes. Modifying the content

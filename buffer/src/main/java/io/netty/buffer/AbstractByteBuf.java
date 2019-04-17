@@ -201,7 +201,7 @@ public abstract class AbstractByteBuf extends ByteBuf {
 
     @Override
     public ByteBuf discardReadBytes() {
-        ensureAccessible();
+        ensureAccessible();//保证这个ByteBuf是可以被访问的
         if (readerIndex == 0) {
             return this;
         }
@@ -209,7 +209,7 @@ public abstract class AbstractByteBuf extends ByteBuf {
         if (readerIndex != writerIndex) {
             setBytes(0, this, readerIndex, writerIndex - readerIndex);
             writerIndex -= readerIndex;
-            adjustMarkers(readerIndex);
+            adjustMarkers(readerIndex);//?markedXXIndex 怎么变化？？？？？？？
             readerIndex = 0;
         } else {
             adjustMarkers(readerIndex);
@@ -284,7 +284,7 @@ public abstract class AbstractByteBuf extends ByteBuf {
         // Adjust to the new capacity.
         capacity(newCapacity);
     }
-
+//2019-04-17学习
     @Override
     public int ensureWritable(int minWritableBytes, boolean force) {
         ensureAccessible();
@@ -1412,7 +1412,7 @@ public abstract class AbstractByteBuf extends ByteBuf {
      * Should be called by every method that tries to access the buffers content to check
      * if the buffer was released before.
      */
-    protected final void ensureAccessible() {
+    protected final void ensureAccessible() {//study 这个机制
         if (checkAccessible && refCnt() == 0) {
             throw new IllegalReferenceCountException(0);
         }
