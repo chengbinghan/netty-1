@@ -454,7 +454,7 @@ public abstract class ByteBuf implements ReferenceCounted, Comparable<ByteBuf> {
      * <p>
      * Please note that the behavior of this method is different
      * from that of NIO buffer, which sets the {@code limit} to
-     * the {@code capacity} of the buffer.
+     * the {@code capacity} of the buffer.//区别在于setlimit
      */
     public abstract ByteBuf clear();
 
